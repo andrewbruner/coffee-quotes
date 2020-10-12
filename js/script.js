@@ -1,22 +1,7 @@
-/******************************************
-Treehouse FSJS Techdegree:
-project 1 - A Random Quote Generator
-******************************************/
-
-// For assistance: 
-  // Check the "Project Resources" section of the project instructions
-  // Reach out in your Slack community - https://treehouse-fsjs-102.slack.com/app_redirect?channel=chit-chat
-
-/***
- * declare the interval timer to be used later
-***/
-
 let intervalTimer;
 
-
-/*** 
- * `quotes` array 
-***/
+let currentQuoteIndex = null;
+let currentColorIndex = 3;
 
 const quotes = [
     {
@@ -119,48 +104,32 @@ const quotes = [
     }
 ];
 
-
-/*** 
- * `colors` array 
-***/
-
 const colors = ['rgb(192, 57, 57)', 'rgb(192, 192, 57)', 'rgb(91, 192, 57)', 'rgb(58, 193, 98)', 'rgb(57, 159, 192)', 'rgb(91, 57, 192)', 'rgb(192, 57, 159)'];
 
-
-/***
- * `getRandomQuote` function
-***/
-
 const getRandomQuote = () => {
-    const randomNumber = Math.floor(Math.random() * quotes.length);
+    let randomNumber = null;
+    while (randomNumber == null || randomNumber == currentQuoteIndex) {
+        randomNumber = Math.floor(Math.random() * quotes.length);
+    }
+    currentQuoteIndex = randomNumber;
     return quotes[randomNumber];
 };
 
-
-/***
- * `getRandomColor` function
-***/
-
 const getRandomColor = () => {
-    const randomNumber = Math.floor(Math.random() * colors.length);
+    let randomNumber = null;
+    while (randomNumber == null || randomNumber == currentColorIndex) {
+        randomNumber = Math.floor(Math.random() * colors.length);
+    }
+    currentColorIndex = randomNumber;
     return colors[randomNumber];
 };
 
-
-/***
- * `printQuote` function
-***/
-
 const printQuote = () => {
-    // clear the running interval timer
     clearInterval(intervalTimer);
     
-    // get random quote object from quotes array
     const randomQuote = getRandomQuote();
-    // get random color string from colors array
     const randomColor = getRandomColor();
     
-    // build string of HTML and quote object properties
     let html = `<p class="quote">${randomQuote.quote}</p>
 <p class="source">${randomQuote.source}`;
     if (randomQuote.citation) {
@@ -174,29 +143,12 @@ const printQuote = () => {
     }
     html += `</p>`;
     
-    // use html string to display random quote in the browser
     document.querySelector('#quote-box').innerHTML = html;
-    
-    // use randomColor string to display random background color
     document.body.style.backgroundColor = randomColor;
     
-    // reset interval timer for 20 seconds
     intervalTimer = window.setInterval(printQuote, 20000);
 };
 
-
-/***
- * set initial interval timer for 20 seconds
- * I learned this function from MDN Web Docs
- * https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setInterval
-***/
-
 intervalTimer = window.setInterval(printQuote, 20000);
 
-
-/***
- * click event listener for the print quote button
- * DO NOT CHANGE THE CODE BELOW!!
-***/
-
-document.getElementById('load-quote').addEventListener("click", printQuote, false);
+document.querySelector('#load-quote').addEventListener("click", printQuote);
