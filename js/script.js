@@ -104,7 +104,8 @@ const quotes = [
     }
 ];
 
-const colors = ['rgb(255, 89, 94)', 'rgb(255, 202, 58)', 'rgb(138, 201, 38)', 'rgb(25, 130, 196)', 'rgb(106, 76, 147)' ];
+/* red, blue, green, grey, white */
+const colors = ['rgb(204, 24, 30)', 'rgb(39, 147, 232)', 'rgb(85, 153, 0)', 'rgb(102, 102, 102)', 'rgb(241, 241, 241)' ];
 
 const getRandomQuote = () => {
     let randomNumber = null;
@@ -146,7 +147,7 @@ const printQuote = () => {
     document.querySelector('#quote-box').innerHTML = html;
     document.body.style.backgroundColor = randomColor;
 
-    if (randomColor == 'rgb(255, 202, 58)' || randomColor == 'rgb(138, 201, 38)') {
+    if (randomColor == 'rgb(241, 241, 241)') {
         document.body.style.color = 'black';
     } else {
         document.body.style.color = 'white';
