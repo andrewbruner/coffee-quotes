@@ -1,111 +1,106 @@
 let intervalTimer;
 
 let currentQuoteIndex = null;
-let currentColorIndex = 3;
 
 const quotes = [
     {
-        quote: 'It is a far, far better thing that I do, than I have ever done; it is a far, far better rest I go to than I have ever known.',
-        source: 'Charles Dickens',
-        citation: 'A Tale of Two Cities',
-        year: '1859',
-        tag: 'novel'
+        quote: `I'd rather take coffee than compliments just now.`,
+        source: 'Louisa May Alcott',
     },
     {
-        quote: 'All we have to decide is what to do with the time that is given us.',
-        source: 'J.R.R. Tolkein',
-        citation: 'The Fellowship of the Ring',
-        year: '1954',
-        tag: 'novel'
+        quote: `Coffee is a beverage that puts one to sleep when not drank.`,
+        source: 'Alphonse Allais',
     },
     {
-        quote: 'You have brains in your head. You have feet in your shoes. You can steer yourself any direction you choose. You’re on your own. And you know what you know. And YOU are the one who’ll decide where to go...',
-        source: 'Dr. Seuss',
-        citation: 'Oh, the Places You’ll Go!',
-        year: '1990',
-        tag: 'childrensliterature'
+        quote: `Without my morning coffee, I'm just like a dried-up piece of goat.`,
+        source: 'J.S. Bach',
     },
     {
-        quote: 'It matters not what someone is born, but what they grow to be.',
-        source: 'J.K. Rowling',
-        citation: 'Harry Potter and the Goblet of Fire',
-        year: '2000',
-        tag: 'novel'
+        quote: `It is inhumane, in my opinion, to force people who have a genuine medical need for coffee to wait in line behind people who apparently view it as some kind of recreational activity.`,
+        source: 'Dave Barry',
     },
     {
-        quote: 'But I, being poor, have only my dreams; / I have spread my dreams under your feet; / Tread softly because you tread on my dreams.',
-        source: 'W.B. Yeats',
-        citation: 'He Wishes for the Cloths of Heaven',
-        year: '1899',
-        tag: 'poetry'
+        quote: `I would rather suffer with coffee than be senseless.`,
+        source: 'Napoleon Bonaparte',
     },
     {
-        quote: 'Whatever our souls are made of, his and mine are the same.',
-        source: 'Emily Bronte',
-        citation: 'Wuthering Heights',
-        year: '1847',
-        tag: 'novel'
+        quote: `As long as there was coffee in the world, how bad could things be?`,
+        source: 'Cassandra Clare',
     },
     {
-        quote: 'But soft! What light through yonder window breaks? / It is the east, and Juliet is the sun.',
-        source: 'William Shakespeare',
-        citation: 'Romeo and Juliet',
-        year: 'ca. 1591-1595',
-        tag: 'play'
+        quote: `I have measured out my life with coffee spoons.`,
+        source: 'T.S. Eliot',
     },
     {
-        quote: 'Made weak by time and fate, but strong in will / To strive, to seek, to find, and not to yield.',
-        source: 'Alfred, Lord Tennyson',
-        citation: 'Ulysses',
-        year: '1842',
-        tag: 'poetry'
+        quote: `It's amazing how the world begins to change through the eyes of a cup of coffee.`,
+        source: 'Donna A. Favors',
     },
     {
-        quote: 'Whenever you feel like criticizing anyone ... just remember that all the people in this world haven’t had the advantages that you’ve had.',
-        source: 'F. Scott Fitzgerald',
-        citation: 'The Great Gatsby',
-        year: '1925',
-        tag: 'novel'
+        quote: `I never laugh until I've had my coffee.`,
+        source: 'Clark Gable',
     },
     {
-        quote: 'Real courage is when you know you’re licked before you begin, but you begin anyway and see it through no matter what.',
-        source: 'Harper Lee',
-        citation: 'To Kill a Mockingbird',
-        year: '1960',
-        tag: 'novel'
+        quote: `Caffeine and sugar, the two basic food groups.`,
+        source: 'Laurell K. Hamilton',
     },
     {
-        quote: 'We are such stuff as dreams are made on, and our little life is rounded with a sleep.',
-        source: 'William Shakespeare',
-        citation: 'The Tempest',
-        year: 'ca. 1610-1611',
-        tag: 'play'
+        quote: `Coffee first. Schemes later.`,
+        source: 'Leanna Renee Hieber',
     },
     {
-        quote: 'A bear, however hard he tries, grows tubby without exercise.',
-        source: 'A.A. Milne',
-        citation: 'When We Were Very Young',
-        year: '1924',
-        tag: 'childrensliterature'
+        quote: `Why, yes, I could start my day without coffee. But I like being able to remember things like how to say words and put on pants.`,
+        source: 'Nanea Hoffman',
     },
     {
-        quote: 'Not all those who wander are lost.',
-        source: 'J.R.R. Tolkein',
-        citation: 'The Fellowship of the Ring',
-        year: '1954',
-        tag: 'novel'
+        quote: `Way too much coffee. But if it weren't for the coffee, I'd have no identifiable personality whatsoever.`,
+        source: 'David Letterman',
     },
     {
-        quote: 'The Answer to the ultimate question of Life, The Universe and Everything is... 42!',
-        source: 'Douglas Adams',
-        citation: 'The Hitchhiker’s Guide to the Galaxy',
-        year: '1979',
-        tag: 'novel'
-    }
+        quote: `But even a bad cup of coffee is better than no coffee at all.`,
+        source: 'David Lynch',
+    },
+    {
+        quote: `The powers of a man's mind are directly proportional to the quantity of coffee he drinks.`,
+        source: 'Sir James MacKintosh',
+    },
+    {
+        quote: `Coffee connects us in so many ways – to each other, to our senses, and to the earth that supports the coffee trees.`,
+        source: 'Rohan Marley',
+    },
+    {
+        quote: `Behind every successful woman is a substantial amount of coffee.`,
+        source: 'Stephanie Piro',
+    },
+    {
+        quote: `I never drink coffee at lunch. I find it keeps me awake for the afternoon.`,
+        source: 'Ronald Reagan',
+    },
+    {
+        quote: `What goes best with a cup of coffee? Another cup.`,
+        source: 'Henry Rollins',
+    },
+    {
+        quote: `I believe humans get a lot done, not because we're smart, but because we have thumbs so we can make coffee.`,
+        source: 'Flash Rosenberg',
+    },
+    {
+        quote: `We want to do a lot of stuff; we're not in great shape. We didn't get a good night's sleep. We're a little depressed. Coffee solves all these problems in one delightful little cup.`,
+        source: 'Jerry Seinfeld',
+    },
+    {
+        quote: `No matter what historians claimed, BC really stood for 'Before Coffee.'`,
+        source: 'Cherise Sinclair',
+    },
+    {
+        quote: `Black as the devil, hot as hell, pure as an angel, sweet as love.`,
+        source: 'Charles Maurice de Talleyrand',
+    },
+    {
+        quote: `I like my coffee like I like myself: strong, sweet, and too hot for you.`,
+        source: 'Jac Vanek',
+    },
 ];
 
-/* red, blue, green, grey, white */
-const colors = ['rgb(204, 24, 30)', 'rgb(39, 147, 232)', 'rgb(85, 153, 0)', 'rgb(102, 102, 102)', 'rgb(241, 241, 241)' ];
 
 const getRandomQuote = () => {
     let randomNumber = null;
@@ -116,46 +111,21 @@ const getRandomQuote = () => {
     return quotes[randomNumber];
 };
 
-const getRandomColor = () => {
-    let randomNumber = null;
-    while (randomNumber == null || randomNumber == currentColorIndex) {
-        randomNumber = Math.floor(Math.random() * colors.length);
-    }
-    currentColorIndex = randomNumber;
-    return colors[randomNumber];
-};
-
 const printQuote = () => {
     clearInterval(intervalTimer);
     
     const randomQuote = getRandomQuote();
-    const randomColor = getRandomColor();
     
     let html = `<p class="quote">${randomQuote.quote}</p>
-<p class="source">${randomQuote.source}`;
-    if (randomQuote.citation) {
-        html += `<span class="citation">${randomQuote.citation}</span>`;
-    }
-    if (randomQuote.year) {
-        html += `<span class="year">${randomQuote.year}</span>`;
-    }
-    if (randomQuote.tag) {
-        html += `<span class="tag">${randomQuote.tag}</span>`;
-    }
-    html += `</p>`;
+<p class="source">${randomQuote.source}</p>`;
     
     document.querySelector('#quote-box').innerHTML = html;
-    document.body.style.backgroundColor = randomColor;
-
-    if (randomColor == 'rgb(241, 241, 241)') {
-        document.body.style.color = 'black';
-    } else {
-        document.body.style.color = 'white';
-    }
     
     intervalTimer = window.setInterval(printQuote, 20000);
 };
 
 intervalTimer = window.setInterval(printQuote, 20000);
+
+window.addEventListener('DOMContentLoaded', printQuote);
 
 document.querySelector('#load-quote').addEventListener("click", printQuote);

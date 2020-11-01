@@ -6,8 +6,8 @@
  @import url('https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i&display=swap');
 
 body {
-  background-color: rgb(85, 153, 0);
-  color: white;
+  background-color: white;
+  color: black;
   font-family: 'Playfair Display', serif;
   padding: 5px;
 }
