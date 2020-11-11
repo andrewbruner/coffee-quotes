@@ -130,9 +130,9 @@
     const getRandomQuote = () => {
       let randomNumber = null;
       while (randomNumber == null || randomNumber == vm.currentQuoteIndex) {
-          randomNumber = Math.floor(Math.random() * quotes.length);
+          randomNumber = Math.floor(Math.random() * vm.quotes.length);
       }
-      currentQuoteIndex = randomNumber;
+      vm.currentQuoteIndex = randomNumber;
       return vm.quotes[randomNumber];
     };
 
