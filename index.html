@@ -15,8 +15,8 @@
   </header>
 
   <div id="app">
-    {{ quote.quote }}
-    {{ source }}
+    <p>{{ quote.quote }}</p>
+    <p>{{ quote.source }}</p>
   </div>
   
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
@@ -136,12 +136,13 @@
       return vm.quotes[randomNumber];
     };
 
-    const printQuote = () => {
+    const assignQuote = () => {
       const randomQuote = getRandomQuote();
       vm.quote = randomQuote;
     };
 
-    document.querySelector('button').addEventListener("click", printQuote);
-  </script>
+    document.querySelector('button').addEventListener('click', assignQuote);
+    document.addEventListener('DOMContentLoaded', assignQuote);
+</script>
 </body>
 </html>
