@@ -27,7 +27,7 @@
     const vm = new Vue({
       el: '#app',
       data: {
-        currentQuoteIndex: null,
+        possibleQuoteIndexes: [],
         quote: null,
         quotes: [
           {
@@ -130,22 +130,35 @@
       },
     });
 
-    const getRandomQuote = () => {
-      let randomNumber = null;
-      while (randomNumber == null || randomNumber == vm.currentQuoteIndex) {
-          randomNumber = Math.floor(Math.random() * vm.quotes.length);
-      }
-      vm.currentQuoteIndex = randomNumber;
-      return vm.quotes[randomNumber];
+    const initiatePossibleIndexes = () => {
+        for (let i = 0; i < vm.quotes.length; i++) {
+            vm.possibleQuoteIndexes.push(i);
+        }
     };
 
-    const assignQuote = () => {
+    const getRandomQuote = () => {
+        // check if possibleQuoteIndexes array is empty
+        if (!vm.possibleQuoteIndexes.length) {
+            // if so, initiate it
+            initiatePossibleIndexes();
+        }
+        // get random number based on possibleQuotesIndexes array length
+        let randomNumber = Math.floor(Math.random() * vm.possibleQuoteIndexes.length);
+        // select the random index number
+        let randomIndex = vm.possibleQuoteIndexes[randomNumber];
+        // remove the random index number
+        vm.possibleQuoteIndexes.splice(randomNumber);
+        // return the quote at the random index
+        return vm.quotes[randomIndex, 1];
+    };
+
+    const displayQuote = () => {
       const randomQuote = getRandomQuote();
       vm.quote = randomQuote;
     };
 
-    document.querySelector('button').addEventListener('click', assignQuote);
-    document.addEventListener('DOMContentLoaded', assignQuote);
+    document.querySelector('button').addEventListener('click', displayQuote);
+    document.addEventListener('DOMContentLoaded', displayQuote);
 </script>
 </body>
 </html>
