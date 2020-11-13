@@ -147,9 +147,9 @@
         // select the random index number
         let randomIndex = vm.possibleQuoteIndexes[randomNumber];
         // remove the random index number
-        vm.possibleQuoteIndexes.splice(randomNumber);
+        vm.possibleQuoteIndexes.splice(randomNumber, 1);
         // return the quote at the random index
-        return vm.quotes[randomIndex, 1];
+        return vm.quotes[randomIndex];
     };
 
     const displayQuote = () => {
